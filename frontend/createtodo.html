@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CreateToDo Page</title>
+    <link rel="Stylesheet" href="index.css">
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            ToDo Application
+        </div>
+        <div id="menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="createtodo.html">Create ToDo</a>
+            <a href="getalltodo.html">Get ToDo</a>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </div>
+    <div id="container">
+        Welcome to Create ToDO Page
+    </div>
+    <div id="form">
+        <form>
+            <input type="text" id="title" placeholder="ToDo Title"><br>
+            <input type="text" id="description" placeholder="Description..."><br>
+            <input type="date" id="deadline" placeholder="Deadline"><br>
+            <button id="createtodoBtn" >CreateToDo</button>
+        </form>
+    </div>
+</body>
+<script>
+    var title = document.getElementById("title");
+    var description = document.getElementById("description");
+    var deadline = document.getElementById("deadline");
+    var createtodoBtn = document.getElementById("createtodoBtn");
+
+    //add event
+    createtodoBtn.addEventListener("click",function(e){
+        e.preventDefault();
+
+        var userInfo=JSON.parse(localStorage.getItem("userInfo"));
+        console.log("UserInfo: ",userInfo);
+        var userId=userInfo[0]._id;
+        console.log("userId: ",userId);
+
+        // create getdata
+        var getdata1={
+            title:title.value,
+            description:description.value,
+            deadline:deadline.value,
+            userId:userId
+        }
+        console.log("getdata1", getdata1);
+
+        var url="http://localhost:8081/createtodo";
+
+        // fetch signup api and send data to api
+        fetch(url,{
+            method:"POST",
+            headers:{
+                "Content-type":"application/json"
+            },
+            body:JSON.stringify(getdata1)
+        })
+        .then((response)=>{
+            return response.json();
+        })
+        .then((data)=>{
+            console.log(data);
+        })
+    })
+</script>
+</html>

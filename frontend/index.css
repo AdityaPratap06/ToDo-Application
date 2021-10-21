@@ -1,0 +1,173 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+#header{
+    height: 90px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+#logo{
+    font-size: 30px;
+    font-weight: 800;
+}
+#menu{
+    width: 350px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#menu>a{
+    text-decoration: none;
+    color: white;
+}
+#wlcm{
+    width: 100%;
+    height: 475px;
+    background-image: url("images/todo2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#todo{
+    color: dodgerblue;
+}
+#heading{
+    width: 46.7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#btn{
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#aboutus{
+    width: 100%;
+    height: 450px;
+    text-align: center;
+    padding-bottom: 50px;
+}
+#aboutus>h1{
+    height: 20px;
+    text-align: center;
+}
+#team{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+#aboutus-1,#aboutus-2{
+    border:2px solid blue;
+    width:fit-content;
+    height: fit-content;
+    text-align:center;
+    margin-left: 50px;
+    background-color:blanchedalmond;
+}
+#aboutus-1>img, #aboutus-2>img{
+    width: 50%;
+    height: 60%;
+    margin-top: 10px;
+}
+#wallpaper{
+    height: 475px;
+    border: 1px solid rgb(216, 213, 213);
+    background-color: rgb(238, 234, 234);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#form{
+    width: 100px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px 0.5px rgba(30, 31, 31, 0.4);
+}
+#form>form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+#container,#form{
+    width: 25%;
+    margin: 20px 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#allTodo{
+    width: 80%;
+    height: auto;
+    margin: 20px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.singleTodo{
+    width: 80%;
+    background-color: black;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+}
+#footer{
+    border: 2px solid black;
+    height: fit-content;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#name{
+    border: 1px green;
+    width: fit-content;
+}
+#links{
+    width: 200px;
+    border: greenyellow;
+    width: fit-content;
+    justify-content: space-between;
+}
+#links>a>img{
+    border-radius: 2px;
+    height: 30px;
+    width: 30px;
+}
+#footer>menu{
+    width: 300px;
+    text-align:right;
+    text-decoration: none;
+    justify-content: space-between;
+}
+#footer>#menu>a{
+    color: white;
+}

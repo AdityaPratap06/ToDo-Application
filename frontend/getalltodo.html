@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Get AllToDo</title>
+    <link rel="Stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">
+            ToDo Application
+        </div>
+        <div id="menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="createtodo.html">Create ToDo</a>
+            <a href="getalltodo.html">Get ToDo</a>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </div>
+    <div id="allTodo">
+    </div>
+</body>
+<script>
+    var allTodo=document.getElementById("allTodo");
+    var userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    console.log("UserInfo: ", userInfo);
+    var userId = userInfo[0]._id;
+    console.log("userId: ", userId);
+
+    let url ="http://localhost:8081/getAllToDo/"+userId;
+
+    // fetch
+    fetch(url,{
+        method:"GET"
+    })
+    .then((response)=>{
+        return response.json();
+    })
+    .then((data)=>{
+        console.log("all ToDo= ", data);
+        renderlist(data);
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+
+    // create delete todo function
+    function deleteIt(userId,todoId){
+        let url ="http://localhost:8081/deletetodo/"+userId+"/"+todoId;
+        
+        // fetch
+        fetch(url,{
+        method:"DELETE",
+        })
+        .then((response)=>{
+            return response.json();
+        })
+        .then((data)=>{
+            renderlist(data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
+
+    
+
+    // function renderlist
+    function renderlist(data) {
+        var res = "";
+        for (let i = 0; i < data.length; i++) {
+            let single = data[i];
+            let todoId=single._id;
+            var html = `<div class="singleTodo">
+                            <div class="todoInfo">
+                                <div class="todoTitle">
+                                    ${single.title}
+                                </div>
+                                <div class="todoDescr">
+                                    ${single.description}
+                                </div>
+                                <div class="todoDeadline">
+                                    ${single.deadline}
+                                </div>
+                            </div>
+                            <div class="todoLinks">
+                                <button>Edit</button>
+                                <button onClick=deleteIt(${JSON.stringify(userId)},${JSON.stringify(todoId)})>Delete</button>
+                            </div>
+                        </div>`;
+            res+=html;
+        }
+        allTodo.innerHTML=res;
+    }
+</script>
+
+</html>

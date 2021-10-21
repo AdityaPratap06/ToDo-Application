@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login Page</title>
+    <link rel="Stylesheet" href="index.css">
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            ToDo Application
+        </div>
+        <div id="menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="lopgin.html">Login</a>
+            <a href="signup.html">SignUp</a>
+        </div>
+    </div>
+    <div id="wallpaper">
+        <div id="form">
+            <form><br>
+                <input type="email" placeholder="Enter Email" id="email"><br>
+                <input type="password" placeholder="Enter Password" id="password"><br>
+                <button id="loginBtn">Login</button><br>
+                <p>Don't Have an Account? Please  <a href="signup.html" style="color: red; text-decoration: none;">SignUp</a></p>
+            </form>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="name">
+            <h3>Developed by-  Aditya Pratap Singh</h3>
+        </div>
+        <div id="links">
+            <a href="https://www.linkedin.com/in/aditya-mern-full-stack-developer/">
+                <img src="images/linkedin.png">
+            </a>
+            <a href="https://github.com/AdityaPratap06/">
+                <img src="images/github.png">
+            </a>
+        </div>
+        <div id="menu">
+            <a href="#header">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </div>
+</body>
+<script>
+    var email=document.getElementById("email");
+    var password=document.getElementById("password");
+    var loginBtn=document.getElementById("loginBtn");
+
+    // add event on signupbtn
+    loginBtn.addEventListener("click",function(e){
+        e.preventDefault();
+
+        var getdata1={
+            email:email.value,
+            password:password.value
+        }
+        console.log("getdata1", getdata1);
+
+        var url="http://localhost:8081/login";
+
+        // fetch signup api and send data to api
+        fetch(url,{
+            method:"POST",
+            headers:{
+                "Content-type":"application/json"
+            },
+            body:JSON.stringify(getdata1)
+        })
+        .then((response)=>{
+            /* if(response.status===401){
+                throw new Error("Wrong email or password")
+            }
+            else if(response.status===201){
+                return response.json();
+            } */
+            return response.json();
+        })
+        .then((data)=>{
+            console.log(data);
+            if (typeof(data)==="string"){
+                window.alert(data);
+            }
+            else if(typeof(data)==="object"){
+                localStorage.setItem("userInfo",JSON.stringify(data));
+                window.location.href="createtodo.html";
+            }
+            /* window.location.href="createtodo.html"; */
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    })
+</script>
+</html>
